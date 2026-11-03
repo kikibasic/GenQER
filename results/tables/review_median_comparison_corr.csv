@@ -1,0 +1,5 @@
+target,pearson_r,pearson_p,spearman_rho,spearman_p
+delta_vs_best,-0.655,0.11,-0.643,0.119
+delta_vs_median,-0.235,0.613,0.071,0.879
+delta_vs_mean,0.2,0.668,0.714,0.071
+frac_queries_above_median,0.32,0.485,0.107,0.819

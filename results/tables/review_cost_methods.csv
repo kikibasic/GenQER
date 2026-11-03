@@ -1,0 +1,7 @@
+method,llm_calls,tokens_in_est,tokens_out,usd,chars_out,bm25_searches,rerank_embeddings,passages,ndcg10,note
+no_expansion,0,0,0,0.0,0,1,1,0,0.5523,
+strict_5,5,1035,761,0.0102,4099,1,5,5,0.5991,
+pool_10,43,12849,7664,0.1088,9464,1,10,10,0.6109,generation cost is that of the full pool; retrieval uses 10 sampled passages
+pool_20,43,12849,7664,0.1088,18929,1,20,20,0.6158,generation cost is that of the full pool; retrieval uses 20 sampled passages
+all8_40,43,12849,7664,0.1088,37857,2,40,40,0.6174,second BM25 search is the probe for the corpus-grounded strategies
+obs_selector_top2,43,12849,7664,0.1088,37857,10,40,10,0.6098,"runs all nine pipelines (no expansion + 8 strategies), then fuses the top-2 by RRF"

@@ -1,0 +1,35 @@
+# Generation conditions used in the paper (all runs through the OpenAI API).
+generator:
+  model: gpt-4o            # unpinned API alias; the snapshot is chosen by the provider
+  temperature: 0.7
+  other_sampling_parameters: API defaults
+  passages_per_strategy_per_query: 5
+  dates:
+    main_experiment: 2026-06-26 to 2026-07-26
+    passage_count_control_additional_strict_passages: 2026-08-30 and 2026-09-10 (up to 40 per query)
+    generation_variability_trials: three independent trials of legacy, strict, aspect on DL19/DL20 (97 queries)
+
+llm_judgment_selector:
+  model: gpt-4o-mini
+  note: instruction tuned while observing part of the evaluation data; reported as exploratory only
+
+strategies:
+  legacy:         {calls_per_query: 5, prompts: [legacy]}
+  strict:         {calls_per_query: 5, prompts: [strict]}
+  aspect:         {calls_per_query: 6, prompts: [aspect_stage1, aspect_stage2], note: Stage 1 once (5 aspects, JSON), Stage 2 once per aspect}
+  hybrid:         {calls_per_query: 6, prompts: [aspect_stage1 (n=4), strict, aspect_stage2 (total=4)], note: see prompts/hybrid.md}
+  broaden:        {calls_per_query: 5, prompts: [broaden]}
+  grounded:       {calls_per_query: 5, prompts: [grounded], probe_retrieval: true}
+  corpus_aspect:  {calls_per_query: 6, prompts: [corpus_aspect_stage1, corpus_aspect_stage2], probe_retrieval: true}
+  corpus_broaden: {calls_per_query: 5, prompts: [corpus_broaden], probe_retrieval: true}
+
+probe_retrieval:   # for grounded, corpus_aspect, corpus_broaden
+  retriever: BM25 (Pyserini prebuilt index), original query, top 10 documents
+  terms: 25 most frequent terms of titles and bodies of the top 10 documents, excluding query terms, stopwords, and words of up to 2 characters
+  snippets: first 200 characters of each of the top 3 documents
+
+retrieval:
+  first_stage: BM25 (Pyserini prebuilt indexes), k1 0.9, b 0.4, top 100
+  query_formulation: original query repeated max(1, floor(floor(|G|/|q|)/6)) times, concatenated with the generated passages
+  second_stage: all-mpnet-base-v2 reranking of the top 100; query vector = re-normalized mean of L2-normalized embeddings of "original query + each passage"
+  robustness_check_reranker: bge-base-en-v1.5

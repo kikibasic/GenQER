@@ -1,0 +1,10 @@
+method,n,ndcg10,delta_vs_strict,perm_p_vs_strict,regret_vs_oracle9,top1_acc_any_tie,share_no_expansion,n_distinct
+strict (best single),755,0.5991,0.0,1.0,0.0863,,,
+"oracle label (first max, n0 first)",755,0.6855,0.0863,0.0001,0.0,1.0,0.456,9.0
+"predictive LR, base6 (saved, Table II)",755,0.6001,0.0009,0.8681,0.0854,0.505,0.009,9.0
+"predictive LR, base6+qpp",755,0.5933,-0.0058,0.3249,0.0921,0.493,0.025,9.0
+"predictive LR, qpp only",755,0.5871,-0.012,0.0204,0.0984,0.47,0.105,9.0
+"predictive LR, base6+qpp+dense",755,0.594,-0.0051,0.3827,0.0915,0.507,0.044,9.0
+observational top-2 RRF (Table II),755,0.6098,0.0107,0.0799,0.0757,,,
+all-strategy integration,755,0.6174,0.0182,0.0002,0.0681,,,
+oracle (upper bound),755,0.6855,0.0863,0.0001,0.0,,,
