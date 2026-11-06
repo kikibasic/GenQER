@@ -55,6 +55,6 @@ Regenerating the passages with the API is possible with the prompts in `prompts/
 
 Code: MIT (see `LICENSE`). Prompts, result tables, and released generations: CC BY 4.0. The datasets themselves are distributed by their original providers (BEIR, TREC) under their own terms.
 
-## Contact
+## Questions
 
-Aira Hayashi, Ochanomizu University.
+Please open a GitHub issue.
