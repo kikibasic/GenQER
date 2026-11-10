@@ -1,6 +1,6 @@
 # corpus_aspect, Stage 1 (corpus-grounded facet decomposition)
 
-Called once per query. Same placeholders as grounded; returns a JSON array of 5 facets.
+Called once per query. Same placeholders as corpus_strict; returns a JSON array of 5 facets.
 
 ## [system]
 

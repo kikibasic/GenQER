@@ -2,7 +2,7 @@
 
 All numbers are nDCG@10 unless a column says otherwise. Dataset codes: `covid` = TREC-COVID, `nfc` = NFCorpus, `scifact` = SciFact, `dl19`/`dl20` = TREC DL 2019/2020, `news` = TREC-NEWS, `robust04` = Robust04. `POOLED` = all 755 queries of the five main datasets as one set.
 
-Strategy codes used in column names: `n0` = no expansion; `legacy`, `strict`, `aspect`, `hybrid`, `broaden`, `grounded`, `corpus_aspect`, `corpus_broaden` = the eight strategies. In `subset_pool_perquery.csv` the short codes are `leg`, `str`, `asp`, `hyb`, `bro`, `gro`, `casp`, `cbro`; `drop_X` = all strategies except X; `all6` = all except corpus_aspect and corpus_broaden; `all8` = all-strategy integration.
+Strategy codes used in column names: `n0` = no expansion; `legacy`, `strict`, `aspect`, `hybrid`, `broaden`, `grounded`, `corpus_aspect`, `corpus_broaden` = the eight strategies (`grounded` in the files is the strategy called corpus_strict in the paper). In `subset_pool_perquery.csv` the short codes are `leg`, `str`, `asp`, `hyb`, `bro`, `gro` (= corpus_strict), `casp`, `cbro`; `drop_X` = all strategies except X; `all6` = all except corpus_aspect and corpus_broaden; `all8` = all-strategy integration.
 
 ## per_query/
 

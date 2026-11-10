@@ -1,6 +1,6 @@
 # corpus_broaden (vocabulary expansion + corpus vocabulary)
 
-Called 5 times per query. Same placeholders as grounded.
+Called 5 times per query. Same placeholders as corpus_strict.
 
 ## [system]
 

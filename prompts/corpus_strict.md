@@ -1,4 +1,6 @@
-# grounded (specificity + corpus vocabulary)
+# corpus_strict (specificity + corpus vocabulary)
+
+Called `grounded` in earlier drafts and `corpus_grounded` in the experiment code and the result files.
 
 Called 5 times per query. `{terms}` = up to 25 most frequent terms of the top-10 BM25 documents for the original query (query terms, stopwords and words of up to 2 characters removed), comma-separated. `{snippet i}` = first 200 characters of the i-th top document.
 

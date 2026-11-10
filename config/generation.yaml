@@ -19,11 +19,11 @@ strategies:
   aspect:         {calls_per_query: 6, prompts: [aspect_stage1, aspect_stage2], note: Stage 1 once (5 aspects, JSON), Stage 2 once per aspect}
   hybrid:         {calls_per_query: 6, prompts: [aspect_stage1 (n=4), strict, aspect_stage2 (total=4)], note: see prompts/hybrid.md}
   broaden:        {calls_per_query: 5, prompts: [broaden]}
-  grounded:       {calls_per_query: 5, prompts: [grounded], probe_retrieval: true}
+  corpus_strict:  {calls_per_query: 5, prompts: [corpus_strict], probe_retrieval: true, code_name: corpus_grounded}
   corpus_aspect:  {calls_per_query: 6, prompts: [corpus_aspect_stage1, corpus_aspect_stage2], probe_retrieval: true}
   corpus_broaden: {calls_per_query: 5, prompts: [corpus_broaden], probe_retrieval: true}
 
-probe_retrieval:   # for grounded, corpus_aspect, corpus_broaden
+probe_retrieval:   # for corpus_strict, corpus_aspect, corpus_broaden
   retriever: BM25 (Pyserini prebuilt index), original query, top 10 documents
   terms: 25 most frequent terms of titles and bodies of the top 10 documents, excluding query terms, stopwords, and words of up to 2 characters
   snippets: first 200 characters of each of the top 3 documents
