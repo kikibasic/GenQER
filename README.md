@@ -38,7 +38,7 @@ The paper asks whether, for query expansion with LLM-generated pseudo-reference 
 
 ## Experimental conditions in brief
 
-- Generator: OpenAI `gpt-4o` (unpinned alias), temperature 0.7, other sampling parameters at API defaults, five passages per strategy and query. Main generations: June 26 to July 26, 2026. Additional strict passages for the passage-count control (up to 40 per query): August 30 and September 10, 2026. See `config/generation.yaml`.
+- Generator: OpenAI `gpt-4o` (snapshot `gpt-4o-2024-08-06`, the alias's default snapshot per OpenAI's model documentation; the code requested the alias), temperature 0.7, other sampling parameters at API defaults, five passages per strategy and query. Main generations: June 26 to July 26, 2026. Additional strict passages for the passage-count control (up to 40 per query): August 30 and September 10, 2026. See `config/generation.yaml`.
 - First stage: Pyserini prebuilt BM25 indexes, k1 = 0.9, b = 0.4, top 100.
 - Second stage: `all-mpnet-base-v2`; the query representation is the re-normalized mean of the L2-normalized embeddings of "original query + each passage".
 - Datasets: TREC-COVID (50 queries), NFCorpus (308), SciFact (300), TREC DL19 (43), DL20 (54); held-out: TREC-NEWS (57), Robust04 (249).
@@ -49,7 +49,7 @@ The paper asks whether, for query expansion with LLM-generated pseudo-reference 
 
 The per-query files in `results/per_query/` contain the nDCG@10 of every method for every query. Any difference, confidence interval, or permutation test in the paper can be recomputed from them without calling the API. Evaluation scripts will be added under `scripts/`.
 
-Regenerating the passages with the API is possible with the prompts in `prompts/` and the settings in `config/generation.yaml`, but `gpt-4o` is an unpinned alias whose snapshot is chosen by the provider, so a later run need not reproduce the saved passages. Use the saved generations in `data/` for exact reproduction.
+Regenerating the passages with the API is possible with the prompts in `prompts/` and the settings in `config/generation.yaml`; note that the gpt-4o snapshots are scheduled for shutdown by OpenAI on January 14, 2027, and that sampling at temperature 0.7 is not deterministic. Use the saved generations in `data/` for exact reproduction.
 
 ## License
 

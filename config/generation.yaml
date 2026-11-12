@@ -1,6 +1,7 @@
 # Generation conditions used in the paper (all runs through the OpenAI API).
 generator:
-  model: gpt-4o            # unpinned API alias; the snapshot is chosen by the provider
+  model: gpt-4o
+  snapshot: gpt-4o-2024-08-06   # the default snapshot of the gpt-4o alias per OpenAI's model documentation (no repointing recorded in the changelog); the code requested the alias
   temperature: 0.7
   other_sampling_parameters: API defaults
   passages_per_strategy_per_query: 5
