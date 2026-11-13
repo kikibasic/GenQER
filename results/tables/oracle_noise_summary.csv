@@ -1,0 +1,2 @@
+n,space,best_static,best_static_ndcg,oracle_within,oracle_cross,gain_within,gain_cross,gain_reproducible_pct,pair_agree,pair_agree_tol,all3_agree,mean_retest_r_score,mean_retest_r_delta
+97,n0+legacy+strict+aspect,strict,0.7594,0.7923,0.7765,0.0329,0.0171,52.1,0.656,0.66,0.515,0.957,0.95

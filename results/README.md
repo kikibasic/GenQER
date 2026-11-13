@@ -33,6 +33,9 @@ Strategy codes used in column names: `n0` = no expansion; `legacy`, `strict`, `a
 | `fusion_pool_summary.csv`, `fusion_all9_summary.csv` | integration and fusion summaries |
 | `stage_ablation_summary.csv` | Fig. 1 |
 | `corpus_strategy_variation_summary.csv`, `corpus_strategy_oracle_distribution.csv` | Fig. 2 |
+| `subset_pool_summary.csv`, `subset_pool_choices.csv` | per-dataset strategy-set selection: five-fold cross-validation (`cv_subset`), the best configuration chosen on the whole evaluation set (`exploratory_best`), and the configurations chosen per fold |
 | `heldout_confirmation_summary.csv` | held-out datasets |
+| `oracle_noise_summary.csv` | generation variability: three independent generations of legacy, strict and aspect on DL19/DL20 (97 queries) |
+| `llm_router_v4_9_summary.csv` | LLM-judgment selector (exploratory; `realized_ndcg_top1` is the value in Table II) |
 | `reranker_robustness_summary.csv` | bge-base-en-v1.5 check |
 | `holm_corrected_pooled.csv` | Holm-corrected p-values of the main family |
