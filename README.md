@@ -16,8 +16,8 @@ The paper asks whether, for query expansion with LLM-generated pseudo-reference 
 | `config/generation.yaml` | Generation conditions: model, temperature, number of passages, dates, API settings. | complete |
 | `results/tables/` | The aggregated numbers behind every table and figure in the paper (CSV). | complete |
 | `results/per_query/` | Per-query nDCG@10 for every compared method, from which all tests in the paper can be recomputed (CSV). | complete |
-| `data/` | The saved generations (passages) and TREC run files. | to be added as a GitHub Release (ZIP); see `data/README.md` |
-| `scripts/` | Evaluation and significance-test scripts. | to be added |
+| `data/` | The saved generations (passages) and TREC run files. | distributed as two ZIP archives attached to the [v1.0 release](https://github.com/kikibasic/GenQER/releases/tag/v1.0); see `data/README.md` |
+| `scripts/` | Retrieval and reranking from the saved generations, evaluation of run files, fusion, selectors, and the statistical tests. | complete; see `scripts/README.md` |
 
 ## Mapping to the paper
 
@@ -32,7 +32,10 @@ The paper asks whether, for query expansion with LLM-generated pseudo-reference 
 | Fig. 1 (stage-wise analysis) | `results/tables/stage_ablation_summary.csv` |
 | Fig. 2 (per-dataset strategy characteristics) | `results/tables/corpus_strategy_oracle_distribution.csv`, `review_median_comparison.csv` |
 | Per-dataset selection and learning curve | `results/tables/review_per_dataset_learning_curve.csv` |
+| Per-dataset selection with five-fold cross-validation | `results/tables/subset_pool_summary.csv`, `subset_pool_choices.csv` |
 | Held-out datasets (TREC-NEWS, Robust04) | `results/tables/heldout_confirmation_summary.csv` |
+| Generation variability (three trials on DL19/DL20) | `results/tables/oracle_noise_summary.csv` |
+| LLM-judgment selector (exploratory) | `results/tables/llm_router_v4_9_summary.csv` |
 | Second reranker (bge-base) | `results/tables/reranker_robustness_summary.csv` |
 | Holm-corrected p-values | `results/tables/holm_corrected_pooled.csv` |
 
@@ -47,7 +50,31 @@ The paper asks whether, for query expansion with LLM-generated pseudo-reference 
 
 ## Reproducing the numbers
 
-The per-query files in `results/per_query/` contain the nDCG@10 of every method for every query. Any difference, confidence interval, or permutation test in the paper can be recomputed from them without calling the API. Evaluation scripts will be added under `scripts/`.
+No step below calls the LLM. Details and requirements are in `scripts/README.md`.
+
+1. From the per-query files in `results/per_query/` (numpy, pandas, scipy only):
+
+   ```bash
+   python scripts/reproduce_tables.py
+   ```
+
+   recomputes the differences, confidence intervals, permutation tests, Holm corrections and degradation rates and compares them with `results/tables/`.
+
+2. From the run files (unzip the release archives into `data/` first):
+
+   ```bash
+   python scripts/evaluate_runs.py --check
+   ```
+
+   re-evaluates every released run with trec_eval and compares the per-query nDCG@10 with `results/per_query/`. `scripts/fuse_runs.py` and `scripts/per_query_selectors.py` recompute the fused rankings and the selectors.
+
+3. From the saved generations:
+
+   ```bash
+   python scripts/run_pipeline.py --dataset dl19 --passages all8 --out dl19_all8.run
+   ```
+
+   reruns BM25 and reranking for a strategy, a set of strategies, or a passage-count condition.
 
 Regenerating the passages with the API is possible with the prompts in `prompts/` and the settings in `config/generation.yaml`; note that the gpt-4o snapshots are scheduled for shutdown by OpenAI on January 14, 2027, and that sampling at temperature 0.7 is not deterministic. Use the saved generations in `data/` for exact reproduction.
 
