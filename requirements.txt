@@ -1,0 +1,11 @@
+# Versions used for the paper (Python 3.11). Pyserini additionally needs Java 21.
+numpy==2.4.6
+pandas==2.3.2
+scipy==1.17.1
+scikit-learn==1.7.1
+tqdm==4.67.1
+# for evaluate_runs.py, fuse_runs.py, per_query_selectors.py observational, run_pipeline.py
+pyserini==1.2.0
+# for run_pipeline.py
+torch==2.5.1
+transformers==4.56.0
